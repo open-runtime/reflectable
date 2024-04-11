@@ -9,10 +9,9 @@ description: >
 environment:
   sdk: '>=3.0.0 <4.0.0'
 dependencies:
-  build_runner: ^2.4.8
+  build_runner: ^2.4.9
   glob: ^2.1.2
   reflectable:
-    path: ../reflectable
 dev_dependencies:
   analyzer: ^6.4.1
   build_test: ^2.2.2
