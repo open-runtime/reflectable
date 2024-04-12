@@ -5,3 +5,5 @@ build
 reflectable.iml
 .idea
 *.reflectable.dart
+reflectable/pubspec.lock
+test_reflectable/pubspec.lock
