@@ -5532,6 +5532,9 @@ class MixinApplication implements ClassElement {
   bool get isAugmentation => false;
 
   @override
+  ClassElement? get augmentationTarget => null;
+
+  @override
   ElementLocation? get location => null;
 
   @override
@@ -5554,7 +5557,8 @@ class MixinApplication implements ClassElement {
   // we will never need to support any members that we don't use locally.
   @override
   dynamic noSuchMethod(Invocation invocation) {
-    log.severe('Missing MixinApplication member: ${invocation.memberName}');
+    log.severe('Missing MixinApplication member: ${invocation.memberName} ${invocation.namedArguments} ${invocation.positionalArguments} ${invocation.isGetter} ${invocation.isSetter} ${invocation.isMethod} ${invocation.runtimeType} ${invocation.typeArguments} ${invocation.isAccessor}');
+    throw Exception(StackTrace.current.toString());
   }
 }
 
@@ -5607,14 +5611,14 @@ Future<DartObject?> _evaluateConstant(
   var errorReporter = ErrorReporter(
     errorListener,
     source,
-    isNonNullableByDefault: true,
+    // isNonNullableByDefault: true,
   );
   var declaredVariables = DeclaredVariables(); // No variables.
 
   var evaluationEngine = ConstantEvaluationEngine(
     declaredVariables: declaredVariables,
     configuration: ConstantEvaluationConfiguration(),
-    isNonNullableByDefault: true,
+    // isNonNullableByDefault: true,
   );
 
   var dependencies = <ConstantEvaluationTarget>[];
