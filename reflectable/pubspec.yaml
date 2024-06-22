@@ -6,7 +6,7 @@ description: >
 homepage: https://github.com/google/reflectable.dart
 repository: https://github.com/open-runtime/reflectable
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.3.0 <4.5.0'
 dependencies:
   analyzer: ^6.4.1
   build: ^2.4.1
