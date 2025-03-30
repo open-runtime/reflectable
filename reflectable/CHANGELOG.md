@@ -1,3 +1,36 @@
+## 4.0.12
+
+* Revert analyzer dependency to 6.8.0 and lints to 5.0.0 due to macro
+  related version resolution conflict. Undo some changes that are
+  required for analyzer 6.11.0, but which are errors with 6.8.0.
+
+## 4.0.11
+
+* Fix bug 291 (such that metadata on enum values can be obtained).
+* Update dependencies to use analyzer 6.11.0 and lints 5.1.0.
+* Change the implementation to use `..._obvious_local_variable_types`
+  lints.
+* Update the [capability design document][1] slightly.
+
+## 4.0.10
+
+* Reintroduce support for newer versions of the analyzer (6.7.0 and up).
+
+## 4.0.9
+
+* Lower the upper bound for the analyzer to avoid a complaint that we
+  should import a library that doesn't exist with the analyzer when using
+  the lower bound. Import the older library that does exist.
+
+## 4.0.8
+
+* Downgrade analyzer to 6.5.0, to avoid version conflict involving
+  `macros` and `_macros` (that we can't do anything about from here).
+
+## 4.0.7
+
+* Update dependencies to use sdk 3.4.0 and analyzer 6.7.0.
+
 ## 4.0.6
 
 * Update dependencies to use analyzer 6.4.0.
@@ -21,8 +54,8 @@
   https://pub.dev/documentation/build/latest/build/AssetId-class.html .
 
   For documentation about package URIs, please see
-  https://api.dart.dev/stable/2.19.2/dart-isolate/Isolate/packageConfig.html 
-  and, for example, https://pub.dev/packages/package_config .
+  `https://api.dart.dev/stable/2.19.2/dart-isolate/Isolate/packageConfig.html`
+  and, for example, `https://pub.dev/packages/package_config`.
 
 ## 4.0.4
 
