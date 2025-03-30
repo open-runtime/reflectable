@@ -7,3 +7,6 @@ linter:
     # Enable the following when analyzer ^6.11.0 can be used:
     # omit_obvious_local_variable_types: true
     # specify_nonobvious_local_variable_types: true
+analyzer:
+  exclude:
+    - example/**

@@ -30,7 +30,9 @@ import 'package:analyzer/src/dart/element/type.dart';
 import 'package:analyzer/src/summary/package_bundle_reader.dart';
 import 'package:build/build.dart';
 import 'package:dart_style/dart_style.dart';
+import 'package:package_config/package_config.dart' show LanguageVersion;
 import 'package:path/path.dart' as path;
+import 'package:pub_semver/pub_semver.dart';
 import 'element_capability.dart' as ec;
 import 'encoding_constants.dart' as constants;
 import 'fixed_point.dart';
@@ -4316,7 +4318,7 @@ void initializeReflectable() {
 }
 ''';
     if (_formatted) {
-      var formatter = DartFormatter();
+      var formatter = DartFormatter(languageVersion: DartFormatter.latestLanguageVersion);
       result = formatter.format(result);
     }
     return result;
@@ -5546,9 +5548,6 @@ class MixinApplication implements ClassElement {
   bool get isAugmentation => false;
 
   @override
-  ClassElement? get augmentationTarget => null;
-
-  @override
   ElementLocation? get location => null;
 
   @override
@@ -5574,8 +5573,7 @@ class MixinApplication implements ClassElement {
   // we will never need to support any members that we don't use locally.
   @override
   dynamic noSuchMethod(Invocation invocation) {
-    log.severe('Missing MixinApplication member: ${invocation.memberName} ${invocation.namedArguments} ${invocation.positionalArguments} ${invocation.isGetter} ${invocation.isSetter} ${invocation.isMethod} ${invocation.runtimeType} ${invocation.typeArguments} ${invocation.isAccessor}');
-    throw Exception(StackTrace.current.toString());
+    log.severe('Missing MixinApplication member: ${invocation.memberName}');
   }
 }
 
@@ -5597,7 +5595,7 @@ String _qualifiedFunctionName(FunctionElement functionElement) {
 
 String _qualifiedTypeParameterName(TypeParameterElement? typeParameterElement) {
   if (typeParameterElement == null) return 'null';
-  return '${_qualifiedName(typeParameterElement.enclosingElement!)}.'
+  return '${_qualifiedName(typeParameterElement.enclosingElement3)}.'
       '${typeParameterElement.name}';
 }
 
