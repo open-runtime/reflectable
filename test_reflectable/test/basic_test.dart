@@ -14,9 +14,7 @@ import 'basic_test.reflectable.dart';
 // ignore_for_file: omit_local_variable_types
 
 class MyReflectable extends r.Reflectable {
-  const MyReflectable()
-      : super(instanceInvokeCapability, newInstanceCapability,
-            declarationsCapability);
+  const MyReflectable() : super(instanceInvokeCapability, newInstanceCapability, declarationsCapability);
 }
 
 @MyReflectable()
@@ -72,8 +70,7 @@ class C extends B {
   String cMethod() => 'cMethod';
 }
 
-List<X> filteredDeclarationsOf<X extends r.DeclarationMirror>(
-    r.ClassMirror cm, predicate) {
+List<X> filteredDeclarationsOf<X extends r.DeclarationMirror>(r.ClassMirror cm, predicate) {
   var result = <X>[];
   cm.declarations.forEach((k, v) {
     if (predicate(v)) {
@@ -107,13 +104,11 @@ List<r.MethodMirror> settersOf(r.ClassMirror cm) {
 }
 
 List<r.MethodMirror> methodsOf(r.ClassMirror cm) {
-  return filteredDeclarationsOf(
-      cm, (v) => v is r.MethodMirror && v.isRegularMethod);
+  return filteredDeclarationsOf(cm, (v) => v is r.MethodMirror && v.isRegularMethod);
 }
 
 Matcher throwsReflectableNoSuchMethod = throwsA(isReflectableNoSuchMethodError);
-Matcher isReflectableNoSuchMethodError =
-    TypeMatcher<ReflectableNoSuchMethodError>();
+Matcher isReflectableNoSuchMethodError = TypeMatcher<ReflectableNoSuchMethodError>();
 
 void main() {
   initializeReflectable();
@@ -207,11 +202,8 @@ void main() {
     expect(settersOf(aClass).map((x) => x.simpleName), ['accessor=']);
     expect(settersOf(bClass).map((x) => x.simpleName), {'accessor='});
     expect(settersOf(cClass).map((x) => x.simpleName), {'accessor=', 'foo='});
-    expect(methodsOf(aClass).map((x) => x.simpleName),
-        {'instanceMethod', 'aMethod'});
-    expect(methodsOf(bClass).map((x) => x.simpleName),
-        {'instanceMethod', 'bMethod'});
-    expect(methodsOf(cClass).map((x) => x.simpleName),
-        {'instanceMethod', 'cMethod'});
+    expect(methodsOf(aClass).map((x) => x.simpleName), {'instanceMethod', 'aMethod'});
+    expect(methodsOf(bClass).map((x) => x.simpleName), {'instanceMethod', 'bMethod'});
+    expect(methodsOf(cClass).map((x) => x.simpleName), {'instanceMethod', 'cMethod'});
   });
 }

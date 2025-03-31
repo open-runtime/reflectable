@@ -30,11 +30,7 @@ import 'parameter_test.reflectable.dart';
 
 class Reflector extends Reflectable {
   const Reflector()
-      : super(
-            typeAnnotationQuantifyCapability,
-            invokingCapability,
-            declarationsCapability,
-            reflectedTypeCapability,
+      : super(typeAnnotationQuantifyCapability, invokingCapability, declarationsCapability, reflectedTypeCapability,
             typeRelationsCapability);
 }
 
@@ -42,11 +38,7 @@ const reflector = Reflector();
 
 class DeepReflector extends Reflectable {
   const DeepReflector()
-      : super(
-            typeAnnotationDeepQuantifyCapability,
-            invokingCapability,
-            declarationsCapability,
-            reflectedTypeCapability,
+      : super(typeAnnotationDeepQuantifyCapability, invokingCapability, declarationsCapability, reflectedTypeCapability,
             typeRelationsCapability);
 }
 
@@ -71,9 +63,7 @@ class MyClass {
 
   static int? noArguments() => null;
   static int oneArgument(String x) => 0;
-  static int? optionalArguments(MyClass x, double y,
-          [Reflector? z, dynamic w = 42]) =>
-      null;
+  static int? optionalArguments(MyClass x, double y, [Reflector? z, dynamic w = 42]) => null;
 
   // ignore: prefer_adjacent_string_concatenation
   static int namedArguments(String x, List y, {String z = '4' + '2'}) => 0;
@@ -103,8 +93,7 @@ void performTests(String message, Reflectable reflector) {
   var getsetEqualsMirror = declarations['getset='] as MethodMirror;
   var noArgumentsMirror = declarations['noArguments'] as MethodMirror;
   var oneArgumentMirror = declarations['oneArgument'] as MethodMirror;
-  var optionalArgumentsMirror =
-      declarations['optionalArguments'] as MethodMirror;
+  var optionalArgumentsMirror = declarations['optionalArguments'] as MethodMirror;
   var namedArgumentsMirror = declarations['namedArguments'] as MethodMirror;
   var staticGetsetMirror = declarations['staticGetset'] as MethodMirror;
   var staticGetsetEqualsMirror = declarations['staticGetset='] as MethodMirror;
@@ -165,18 +154,15 @@ void performTests(String message, Reflectable reflector) {
     expect(opBracketMirror.parameters[0].isOptional, false);
 
     expect(opBracketEqualsMirror.parameters.length, 2);
-    ParameterMirror opBracketEqualsParameter0 =
-        opBracketEqualsMirror.parameters[0];
-    ParameterMirror opBracketEqualsParameter1 =
-        opBracketEqualsMirror.parameters[1];
+    ParameterMirror opBracketEqualsParameter0 = opBracketEqualsMirror.parameters[0];
+    ParameterMirror opBracketEqualsParameter1 = opBracketEqualsMirror.parameters[1];
     expect(opBracketEqualsParameter0.isOptional, false);
     expect(opBracketEqualsParameter0.type.reflectedType, int);
     expect(opBracketEqualsParameter1.isOptional, false);
     expect(opBracketEqualsParameter1.type.reflectedType, dynamic);
   });
 
-  test('$message reflector: parameter list properties, getters and setters',
-      () {
+  test('$message reflector: parameter list properties, getters and setters', () {
     expect(getsetMirror.parameters.length, 0);
     expect(getsetEqualsMirror.parameters.length, 1);
     ParameterMirror getsetEqualsParameter0 = getsetEqualsMirror.parameters[0];
@@ -191,14 +177,10 @@ void performTests(String message, Reflectable reflector) {
     expect(oneArgumentMirror.parameters[0].isOptional, false);
 
     expect(optionalArgumentsMirror.parameters.length, 4);
-    ParameterMirror optionalArgumentsParameter0 =
-        optionalArgumentsMirror.parameters[0];
-    ParameterMirror optionalArgumentsParameter1 =
-        optionalArgumentsMirror.parameters[1];
-    ParameterMirror optionalArgumentsParameter2 =
-        optionalArgumentsMirror.parameters[2];
-    ParameterMirror optionalArgumentsParameter3 =
-        optionalArgumentsMirror.parameters[3];
+    ParameterMirror optionalArgumentsParameter0 = optionalArgumentsMirror.parameters[0];
+    ParameterMirror optionalArgumentsParameter1 = optionalArgumentsMirror.parameters[1];
+    ParameterMirror optionalArgumentsParameter2 = optionalArgumentsMirror.parameters[2];
+    ParameterMirror optionalArgumentsParameter3 = optionalArgumentsMirror.parameters[3];
     expect(optionalArgumentsParameter0.isOptional, false);
     expect(optionalArgumentsParameter0.type.reflectedType, MyClass);
     expect(optionalArgumentsParameter1.isOptional, false);
@@ -213,12 +195,9 @@ void performTests(String message, Reflectable reflector) {
     expect(optionalArgumentsParameter3.defaultValue, 42);
 
     expect(namedArgumentsMirror.parameters.length, 3);
-    ParameterMirror namedArgumentsParameter0 =
-        namedArgumentsMirror.parameters[0];
-    ParameterMirror namedArgumentsParameter1 =
-        namedArgumentsMirror.parameters[1];
-    ParameterMirror namedArgumentsParameter2 =
-        namedArgumentsMirror.parameters[2];
+    ParameterMirror namedArgumentsParameter0 = namedArgumentsMirror.parameters[0];
+    ParameterMirror namedArgumentsParameter1 = namedArgumentsMirror.parameters[1];
+    ParameterMirror namedArgumentsParameter2 = namedArgumentsMirror.parameters[2];
     TypeMirror namedArgumentsType1 = namedArgumentsParameter1.type;
     TypeMirror namedArgumentsClass1 = namedArgumentsType1.originalDeclaration;
     expect(namedArgumentsParameter0.isOptional, false);
@@ -234,12 +213,10 @@ void performTests(String message, Reflectable reflector) {
     expect(namedArgumentsParameter2.defaultValue, '42');
   });
 
-  test('$message reflector: parameter list properties, getters and setters',
-      () {
+  test('$message reflector: parameter list properties, getters and setters', () {
     expect(staticGetsetMirror.parameters.length, 0);
     expect(staticGetsetEqualsMirror.parameters.length, 1);
-    ParameterMirror staticGetsetEqualsParameter0 =
-        staticGetsetEqualsMirror.parameters[0];
+    ParameterMirror staticGetsetEqualsParameter0 = staticGetsetEqualsMirror.parameters[0];
     TypeMirror staticGetsetEqualsType0 = staticGetsetEqualsParameter0.type;
     expect(staticGetsetEqualsParameter0.isOptional, false);
     expect(staticGetsetEqualsType0.isOriginalDeclaration, false);

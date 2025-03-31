@@ -106,8 +106,7 @@ abstract class ReflectableInterface {
 /// which means that the behavior of the instance can be expressed by
 /// generating code in the class.  Generalizations of this setup may
 /// be supported in the future if compelling use cases come up.
-abstract class Reflectable extends implementation.ReflectableImpl
-    implements ReflectableInterface {
+abstract class Reflectable extends implementation.ReflectableImpl implements ReflectableInterface {
   // Intended to near-uniquely identify this class in target programs.
   static const thisClassName = reflectable_class_constants.name;
   static const thisClassId = reflectable_class_constants.id;

@@ -19,9 +19,7 @@ class ReflectableBuilder implements Builder {
   @override
   Future<void> build(BuildStep buildStep) async {
     var targetId = buildStep.inputId.toString();
-    if (targetId.contains('.vm_test.') ||
-        targetId.contains('.node_test.') ||
-        targetId.contains('.browser_test.')) {
+    if (targetId.contains('.vm_test.') || targetId.contains('.node_test.') || targetId.contains('.browser_test.')) {
       return;
     }
     LibraryElement inputLibrary = await buildStep.inputLibrary;
@@ -29,8 +27,8 @@ class ReflectableBuilder implements Builder {
     AssetId inputId = buildStep.inputId;
     AssetId outputId = inputId.changeExtension('.reflectable.dart');
     List<LibraryElement> visibleLibraries = await resolver.libraries.toList();
-    String generatedSource = await BuilderImplementation().buildMirrorLibrary(
-        resolver, inputId, outputId, inputLibrary, visibleLibraries, true, []);
+    String generatedSource = await BuilderImplementation()
+        .buildMirrorLibrary(resolver, inputId, outputId, inputLibrary, visibleLibraries, true, []);
     await buildStep.writeAsString(outputId, generatedSource);
   }
 
@@ -55,13 +53,9 @@ Future<BuildResult> reflectableBuild(List<String> arguments) async {
   } else {
     // TODO(eernst) feature: We should support some customization of
     // the settings, e.g., specifying options like `suppress_warnings`.
-    var options = BuilderOptions(
-        <String, dynamic>{'entry_points': arguments, 'formatted': true},
-        isRoot: true);
+    var options = BuilderOptions(<String, dynamic>{'entry_points': arguments, 'formatted': true}, isRoot: true);
     final builder = ReflectableBuilder(options);
-    var builders = <BuilderApplication>[
-      applyToRoot(builder, generateFor: InputSet(include: arguments))
-    ];
+    var builders = <BuilderApplication>[applyToRoot(builder, generateFor: InputSet(include: arguments))];
     PackageGraph packageGraph = await PackageGraph.forThisPackage();
     var environment = OverrideableEnvironment(IOEnvironment(packageGraph));
     BuildOptions buildOptions = await BuildOptions.create(
@@ -70,9 +64,8 @@ Future<BuildResult> reflectableBuild(List<String> arguments) async {
       packageGraph: packageGraph,
     );
     try {
-      BuildRunner build = await BuildRunner.create(
-          buildOptions, environment, builders, const {},
-          isReleaseBuild: false);
+      BuildRunner build =
+          await BuildRunner.create(buildOptions, environment, builders, const {}, isReleaseBuild: false);
       BuildResult result = await build.run(const {});
       await build.beforeExit();
       return result;

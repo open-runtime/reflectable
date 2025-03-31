@@ -13,19 +13,14 @@ library test_reflectable.test.meta_reflectors_definer;
 import 'package:reflectable/reflectable.dart';
 
 class Reflector extends Reflectable {
-  const Reflector()
-      : super(invokingCapability, declarationsCapability,
-            typeRelationsCapability, libraryCapability);
+  const Reflector() : super(invokingCapability, declarationsCapability, typeRelationsCapability, libraryCapability);
 }
 
 class Reflector2 extends Reflectable {
-  const Reflector2()
-      : super(invokingCapability, typeRelationsCapability, metadataCapability,
-            libraryCapability);
+  const Reflector2() : super(invokingCapability, typeRelationsCapability, metadataCapability, libraryCapability);
 }
 
 class ReflectorUpwardsClosed extends Reflectable {
   const ReflectorUpwardsClosed()
-      : super(superclassQuantifyCapability, invokingCapability,
-            declarationsCapability, typeRelationsCapability);
+      : super(superclassQuantifyCapability, invokingCapability, declarationsCapability, typeRelationsCapability);
 }

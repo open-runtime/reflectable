@@ -16,13 +16,11 @@ class Reflector extends Reflectable {
 }
 
 class NameReflector extends Reflectable {
-  const NameReflector()
-      : super(delegateCapability, const InstanceInvokeCapability('arg0'));
+  const NameReflector() : super(delegateCapability, const InstanceInvokeCapability('arg0'));
 }
 
 class MetaReflector extends Reflectable {
-  const MetaReflector()
-      : super(delegateCapability, const InstanceInvokeMetaCapability(D));
+  const MetaReflector() : super(delegateCapability, const InstanceInvokeMetaCapability(D));
 }
 
 const reflector = Reflector();
@@ -78,8 +76,7 @@ class B implements A {
   }
 }
 
-Matcher throwsReflectableNoMethod =
-    throwsA(const TypeMatcher<ReflectableNoSuchMethodError>());
+Matcher throwsReflectableNoMethod = throwsA(const TypeMatcher<ReflectableNoSuchMethodError>());
 
 void main() {
   initializeReflectable();
@@ -112,11 +109,9 @@ void main() {
     expect(b.argNamed(54, b), a.argNamed(54, b));
     expect(b.argNamed(55, b, z: 3.1415926), a.argNamed(55, b, z: 3.1415926));
     expect(() => bName.argNamed(56, b), throwsReflectableNoMethod);
-    expect(
-        () => bName.argNamed(57, b, z: 3.1415926), throwsReflectableNoMethod);
+    expect(() => bName.argNamed(57, b, z: 3.1415926), throwsReflectableNoMethod);
     expect(bMeta.argNamed(58, b), a.argNamed(58, b));
-    expect(
-        bMeta.argNamed(59, b, z: 3.1415926), a.argNamed(59, b, z: 3.1415926));
+    expect(bMeta.argNamed(59, b, z: 3.1415926), a.argNamed(59, b, z: 3.1415926));
   });
   test('Delegate operator', () {
     expect(b + 60, a + 60);

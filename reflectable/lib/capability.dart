@@ -107,8 +107,7 @@ class InstanceInvokeMetaCapability extends MetadataQuantifiedCapability {
 /// Gives support for reflective invocation of static members (static methods,
 /// getters, and setters) matching [namePattern] interpreted as a regular
 /// expression.
-class StaticInvokeCapability extends NamePatternCapability
-    implements TypeCapability {
+class StaticInvokeCapability extends NamePatternCapability implements TypeCapability {
   const StaticInvokeCapability(super.namePattern);
 }
 
@@ -119,8 +118,7 @@ const staticInvokeCapability = StaticInvokeCapability('');
 /// Gives support for reflective invocation of static members (static methods,
 /// getters, and setters) that are annotated with instances of [metadataType]
 /// or a subtype thereof.
-class StaticInvokeMetaCapability extends MetadataQuantifiedCapability
-    implements TypeCapability {
+class StaticInvokeMetaCapability extends MetadataQuantifiedCapability implements TypeCapability {
   const StaticInvokeMetaCapability(super.metadata);
 }
 
@@ -149,8 +147,7 @@ class TopLevelInvokeMetaCapability extends MetadataQuantifiedCapability {
 ///
 /// Note that this capability implies [TypeCapability], because there is no way
 /// to perform a `newInstance` operation without class mirrors.
-class NewInstanceCapability extends NamePatternCapability
-    implements TypeCapability {
+class NewInstanceCapability extends NamePatternCapability implements TypeCapability {
   const NewInstanceCapability(super.namePattern);
 }
 
@@ -161,8 +158,7 @@ const newInstanceCapability = NewInstanceCapability('');
 /// Gives support for reflective invocation
 /// of constructors (of all kinds) annotated by instances of [metadataType]
 /// or a subtype thereof.
-class NewInstanceMetaCapability extends MetadataQuantifiedCapability
-    implements TypeCapability {
+class NewInstanceMetaCapability extends MetadataQuantifiedCapability implements TypeCapability {
   const NewInstanceMetaCapability(super.metadataType);
 }
 
@@ -260,10 +256,7 @@ const libraryDependenciesCapability = LibraryDependenciesCapability();
 /// [StaticInvokeCapability]([namePattern]), and
 /// [NewInstanceCapability]([namePattern]).
 class InvokingCapability extends NamePatternCapability
-    implements
-        InstanceInvokeCapability,
-        StaticInvokeCapability,
-        NewInstanceCapability {
+    implements InstanceInvokeCapability, StaticInvokeCapability, NewInstanceCapability {
   const InvokingCapability(super.namePattern);
 }
 
@@ -275,10 +268,7 @@ const invokingCapability = InvokingCapability('');
 /// [StaticInvokeMetaCapability]([metadata]), and
 /// [NewInstanceMetaCapability]([metadata]).
 class InvokingMetaCapability extends MetadataQuantifiedCapability
-    implements
-        InstanceInvokeMetaCapability,
-        StaticInvokeMetaCapability,
-        NewInstanceMetaCapability {
+    implements InstanceInvokeMetaCapability, StaticInvokeMetaCapability, NewInstanceMetaCapability {
   const InvokingMetaCapability(super.metadataType);
 }
 
@@ -337,8 +327,7 @@ const subtypeQuantifyCapability = _SubtypeQuantifyCapability();
 class SuperclassQuantifyCapability implements ReflecteeQuantifyCapability {
   final Type upperBound;
   final bool excludeUpperBound;
-  const SuperclassQuantifyCapability(this.upperBound,
-      {this.excludeUpperBound = false});
+  const SuperclassQuantifyCapability(this.upperBound, {this.excludeUpperBound = false});
 }
 
 /// Gives support for reflection on all superclasses of covered classes.
@@ -371,14 +360,12 @@ const typeAnnotationQuantifyCapability = TypeAnnotationQuantifyCapability();
 /// the vocered classes, as well as the transitive closure thereof (that is,
 /// including classes used as type annotations in classes used as type
 /// annotations, etc.).
-const typeAnnotationDeepQuantifyCapability =
-    TypeAnnotationQuantifyCapability(transitive: true);
+const typeAnnotationDeepQuantifyCapability = TypeAnnotationQuantifyCapability(transitive: true);
 
 /// Quantifying capability instance specifying that the reflection support
 /// for any given explicitly declared getter must also be given to its
 /// corresponding explicitly declared setter, if any.
-const correspondingSetterQuantifyCapability =
-    _CorrespondingSetterQuantifyCapability();
+const correspondingSetterQuantifyCapability = _CorrespondingSetterQuantifyCapability();
 
 /// Gives support for calling `.reflect` on subtypes of covered instances.
 ///
@@ -426,8 +413,7 @@ class ImportAttachedCapability {
 /// 'package:reflectable/reflectable.dart'.
 class GlobalQuantifyCapability extends ImportAttachedCapability {
   final String classNamePattern;
-  const GlobalQuantifyCapability(this.classNamePattern, Reflectable reflector)
-      : super(reflector);
+  const GlobalQuantifyCapability(this.classNamePattern, Reflectable reflector) : super(reflector);
 }
 
 /// Gives reflection support in [reflector] for every class
@@ -442,8 +428,7 @@ class GlobalQuantifyCapability extends ImportAttachedCapability {
 /// 'package:reflectable/reflectable.dart'.
 class GlobalQuantifyMetaCapability extends ImportAttachedCapability {
   final Type metadataType;
-  const GlobalQuantifyMetaCapability(this.metadataType, Reflectable reflector)
-      : super(reflector);
+  const GlobalQuantifyMetaCapability(this.metadataType, Reflectable reflector) : super(reflector);
 }
 
 // ---------- Private classes used to enable capability instances above.
@@ -460,8 +445,7 @@ class _SubtypeQuantifyCapability implements ReflecteeQuantifyCapability {
   const _SubtypeQuantifyCapability();
 }
 
-class _CorrespondingSetterQuantifyCapability
-    implements ReflecteeQuantifyCapability {
+class _CorrespondingSetterQuantifyCapability implements ReflecteeQuantifyCapability {
   const _CorrespondingSetterQuantifyCapability();
 }
 
@@ -476,8 +460,7 @@ abstract class NoSuchCapabilityError extends Error {
   factory NoSuchCapabilityError(String message) = _NoSuchCapabilityErrorImpl;
 }
 
-class _NoSuchCapabilityErrorImpl extends Error
-    implements NoSuchCapabilityError {
+class _NoSuchCapabilityErrorImpl extends Error implements NoSuchCapabilityError {
   final String _message;
 
   _NoSuchCapabilityErrorImpl(String message) : _message = message;
@@ -509,14 +492,12 @@ class _StringInvocation extends StringInvocation {
   @override
   bool get isSetter => kind == StringInvocationKind.setter;
 
-  _StringInvocation(this.memberName, this.positionalArguments,
-      this.namedArguments, this.kind);
+  _StringInvocation(this.memberName, this.positionalArguments, this.namedArguments, this.kind);
 }
 
 /// Thrown when a method is invoked via a reflectable, but the reflectable
 /// doesn't have the capabilities to invoke it.
-class ReflectableNoSuchMethodError extends Error
-    implements NoSuchCapabilityError {
+class ReflectableNoSuchMethodError extends Error implements NoSuchCapabilityError {
   /// [receiver] is nullable because (1) we can reflect on the null object and
   /// hence it can be the receiver, (2) a static method invocation uses the
   /// reflected type as the receiver, but null is used when no capability
@@ -533,11 +514,11 @@ class ReflectableNoSuchMethodError extends Error
 
   final StringInvocationKind kind;
 
-  ReflectableNoSuchMethodError(this.receiver, this.memberName,
-      this.positionalArguments, this.namedArguments, this.kind);
+  ReflectableNoSuchMethodError(
+      this.receiver, this.memberName, this.positionalArguments, this.namedArguments, this.kind);
 
-  StringInvocation get invocation => _StringInvocation(
-      memberName, positionalArguments, namedArguments ?? const {}, kind);
+  StringInvocation get invocation =>
+      _StringInvocation(memberName, positionalArguments, namedArguments ?? const {}, kind);
 
   @override
   String toString() {
@@ -566,39 +547,31 @@ class ReflectableNoSuchMethodError extends Error
   }
 }
 
-dynamic reflectableNoSuchInvokableError(
-    Object? receiver,
-    String memberName,
-    List positionalArguments,
-    Map<Symbol, dynamic>? namedArguments,
-    StringInvocationKind kind) {
+dynamic reflectableNoSuchInvokableError(Object? receiver, String memberName, List positionalArguments,
+    Map<Symbol, dynamic>? namedArguments, StringInvocationKind kind) {
+  throw ReflectableNoSuchMethodError(receiver, memberName, positionalArguments, namedArguments, kind);
+}
+
+dynamic reflectableNoSuchMethodError(
+    Object? receiver, String memberName, List positionalArguments, Map<Symbol, dynamic>? namedArguments) {
   throw ReflectableNoSuchMethodError(
-      receiver, memberName, positionalArguments, namedArguments, kind);
+      receiver, memberName, positionalArguments, namedArguments, StringInvocationKind.method);
 }
 
-dynamic reflectableNoSuchMethodError(Object? receiver, String memberName,
-    List positionalArguments, Map<Symbol, dynamic>? namedArguments) {
-  throw ReflectableNoSuchMethodError(receiver, memberName, positionalArguments,
-      namedArguments, StringInvocationKind.method);
+dynamic reflectableNoSuchGetterError(
+    Object? receiver, String memberName, List positionalArguments, Map<Symbol, dynamic>? namedArguments) {
+  throw ReflectableNoSuchMethodError(
+      receiver, memberName, positionalArguments, namedArguments, StringInvocationKind.getter);
 }
 
-dynamic reflectableNoSuchGetterError(Object? receiver, String memberName,
-    List positionalArguments, Map<Symbol, dynamic>? namedArguments) {
-  throw ReflectableNoSuchMethodError(receiver, memberName, positionalArguments,
-      namedArguments, StringInvocationKind.getter);
-}
-
-dynamic reflectableNoSuchSetterError(Object? receiver, String memberName,
-    List positionalArguments, Map<Symbol, dynamic>? namedArguments) {
-  throw ReflectableNoSuchMethodError(receiver, memberName, positionalArguments,
-      namedArguments, StringInvocationKind.setter);
+dynamic reflectableNoSuchSetterError(
+    Object? receiver, String memberName, List positionalArguments, Map<Symbol, dynamic>? namedArguments) {
+  throw ReflectableNoSuchMethodError(
+      receiver, memberName, positionalArguments, namedArguments, StringInvocationKind.setter);
 }
 
 dynamic reflectableNoSuchConstructorError(
-    Object? receiver,
-    String constructorName,
-    List positionalArguments,
-    Map<Symbol, dynamic>? namedArguments) {
-  throw ReflectableNoSuchMethodError(receiver, constructorName,
-      positionalArguments, namedArguments, StringInvocationKind.constructor);
+    Object? receiver, String constructorName, List positionalArguments, Map<Symbol, dynamic>? namedArguments) {
+  throw ReflectableNoSuchMethodError(
+      receiver, constructorName, positionalArguments, namedArguments, StringInvocationKind.constructor);
 }

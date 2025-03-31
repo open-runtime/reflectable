@@ -63,9 +63,7 @@ class B extends A {
   @override
   bool operator ==(Object other_) {
     dynamic other = other_;
-    return _equalsHandlingLists(a, other.a) &&
-        _equalsHandlingLists(b, other.b) &&
-        _equalsHandlingLists(c, other.c);
+    return _equalsHandlingLists(a, other.a) && _equalsHandlingLists(b, other.b) && _equalsHandlingLists(c, other.c);
   }
 
   @override

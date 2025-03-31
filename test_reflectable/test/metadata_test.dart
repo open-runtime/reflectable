@@ -14,15 +14,14 @@ import 'metadata_test.reflectable.dart';
 
 class MyReflectable extends Reflectable {
   const MyReflectable()
-      : super(metadataCapability, instanceInvokeCapability,
-            staticInvokeCapability, declarationsCapability, libraryCapability);
+      : super(metadataCapability, instanceInvokeCapability, staticInvokeCapability, declarationsCapability,
+            libraryCapability);
 }
 
 const myReflectable = MyReflectable();
 
 class MyReflectable2 extends Reflectable {
-  const MyReflectable2()
-      : super(instanceInvokeCapability, staticInvokeCapability);
+  const MyReflectable2() : super(instanceInvokeCapability, staticInvokeCapability);
 }
 
 const myReflectable2 = MyReflectable2();
@@ -38,13 +37,7 @@ class K {
 }
 
 @myReflectable
-@Bar({
-  b: deprecated,
-  c: Deprecated('tomorrow'),
-  1 + 2: (d ? 3 : 4),
-  identical(1, 2): 's',
-  K.p: 6
-})
+@Bar({b: deprecated, c: Deprecated('tomorrow'), 1 + 2: (d ? 3 : 4), identical(1, 2): 's', K.p: 6})
 @b
 @c
 class Foo {
@@ -114,10 +107,8 @@ void main() {
   });
   test('metadata without capability', () {
     var foo2Mirror = myReflectable2.reflectType(Foo2) as ClassMirror;
-    expect(() => foo2Mirror.metadata,
-        throwsA(const TypeMatcher<NoSuchCapabilityError>()));
+    expect(() => foo2Mirror.metadata, throwsA(const TypeMatcher<NoSuchCapabilityError>()));
 
-    expect(() => foo2Mirror.declarations['foo']!.metadata,
-        throwsA(const TypeMatcher<NoSuchCapabilityError>()));
+    expect(() => foo2Mirror.declarations['foo']!.metadata, throwsA(const TypeMatcher<NoSuchCapabilityError>()));
   });
 }

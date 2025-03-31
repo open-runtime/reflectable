@@ -11,9 +11,7 @@ import 'declarations_test.reflectable.dart';
 // ignore_for_file: omit_local_variable_types
 
 class Reflector extends Reflectable {
-  const Reflector()
-      : super(instanceInvokeCapability, newInstanceCapability,
-            declarationsCapability);
+  const Reflector() : super(instanceInvokeCapability, newInstanceCapability, declarationsCapability);
 }
 
 // TODO(sigurdm) implement: Adapt this test when we support fields.
@@ -71,8 +69,7 @@ void main() {
       'A.c',
     });
 
-    expect(declarationsB.values.map((x) => x.simpleName),
-        {'bar', 'getter1', 'getter2', 'setter2=', 'B.c', 'B'});
+    expect(declarationsB.values.map((x) => x.simpleName), {'bar', 'getter1', 'getter2', 'setter2=', 'B.c', 'B'});
   });
 
   test('MethodMirror properties', () {
@@ -139,8 +136,7 @@ void main() {
     expect(constructorA.isOperator, isFalse);
     expect(constructorA.isSynthetic, isFalse);
     expect(constructorA.isTopLevel, isFalse);
-    var redirectingConstructorA =
-        declarationsA['A.redirecting'] as MethodMirror;
+    var redirectingConstructorA = declarationsA['A.redirecting'] as MethodMirror;
     expect(redirectingConstructorA.isConstructor, isTrue);
     expect(redirectingConstructorA.isGenerativeConstructor, isTrue);
     expect(redirectingConstructorA.isFactoryConstructor, isFalse);
@@ -158,8 +154,7 @@ void main() {
     expect(constConstructorA.isFactoryConstructor, isFalse);
     expect(constConstructorA.isConstConstructor, isTrue);
     expect(constConstructorA.isRedirectingConstructor, isFalse);
-    var redirectingFactoryConstructorA =
-        declarationsA['A.redirectingFactory'] as MethodMirror;
+    var redirectingFactoryConstructorA = declarationsA['A.redirectingFactory'] as MethodMirror;
     expect(redirectingFactoryConstructorA.isConstructor, isTrue);
     expect(redirectingFactoryConstructorA.isGenerativeConstructor, isFalse);
     expect(redirectingFactoryConstructorA.isFactoryConstructor, isTrue);

@@ -15,8 +15,8 @@ import 'static_type_arguments_test.reflectable.dart';
 
 class Reflector extends Reflectable {
   const Reflector()
-      : super(instanceInvokeCapability, declarationsCapability, typeCapability,
-            typeRelationsCapability, reflectedTypeCapability);
+      : super(instanceInvokeCapability, declarationsCapability, typeCapability, typeRelationsCapability,
+            reflectedTypeCapability);
 }
 
 const Reflector reflector = Reflector();
@@ -46,23 +46,18 @@ void main() {
   test('get type arguments', () {
     var myServiceMirror = reflector.reflectType(MyService) as ClassMirror;
     Map<String, DeclarationMirror> declarations = myServiceMirror.declarations;
-    var securityServiceMirror =
-        declarations['securityService'] as VariableMirror;
+    var securityServiceMirror = declarations['securityService'] as VariableMirror;
     var typeAnnotationMirror = securityServiceMirror.type as ClassMirror;
     expect(typeAnnotationMirror.reflectedTypeArguments[0], SecurityService);
-    expect(
-        typeAnnotationMirror.typeArguments[0].reflectedType, SecurityService);
+    expect(typeAnnotationMirror.typeArguments[0].reflectedType, SecurityService);
   });
 
   test('get type arguments in unimplemented case', () {
-    var myServiceMirror =
-        reflector.reflectType(MyGenericService) as ClassMirror;
+    var myServiceMirror = reflector.reflectType(MyGenericService) as ClassMirror;
     Map<String, DeclarationMirror> declarations = myServiceMirror.declarations;
-    var securityServiceMirror =
-        declarations['genericSecurityService'] as VariableMirror;
+    var securityServiceMirror = declarations['genericSecurityService'] as VariableMirror;
     var typeAnnotationMirror = securityServiceMirror.type as ClassMirror;
-    expect(
-        () => typeAnnotationMirror.reflectedTypeArguments, throwsUnimplemented);
+    expect(() => typeAnnotationMirror.reflectedTypeArguments, throwsUnimplemented);
     expect(() => typeAnnotationMirror.typeArguments, throwsUnimplemented);
   });
 }

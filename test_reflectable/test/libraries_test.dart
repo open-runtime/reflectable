@@ -13,17 +13,13 @@ import 'package:test/test.dart';
 import 'libraries_test.reflectable.dart';
 
 class Reflector extends Reflectable {
-  const Reflector()
-      : super(
-            libraryCapability,
-            const TopLevelInvokeCapability(r'^myFunction$'),
-            declarationsCapability);
+  const Reflector() : super(libraryCapability, const TopLevelInvokeCapability(r'^myFunction$'), declarationsCapability);
 }
 
 class Reflector2 extends Reflectable {
   const Reflector2()
-      : super(reflectedTypeCapability, const TopLevelInvokeMetaCapability(Test),
-            declarationsCapability, libraryCapability, metadataCapability);
+      : super(reflectedTypeCapability, const TopLevelInvokeMetaCapability(Test), declarationsCapability,
+            libraryCapability, metadataCapability);
 }
 
 class Reflector3 extends Reflectable {
@@ -58,28 +54,20 @@ set setter(x) => p = x + 1;
 @Test()
 String get getter => '10';
 
-final Matcher throwsNoCapability =
-    throwsA(const TypeMatcher<NoSuchCapabilityError>());
+final Matcher throwsNoCapability = throwsA(const TypeMatcher<NoSuchCapabilityError>());
 
-final Matcher throwsReflectableNoMethod =
-    throwsA(const TypeMatcher<ReflectableNoSuchMethodError>());
+final Matcher throwsReflectableNoMethod = throwsA(const TypeMatcher<ReflectableNoSuchMethodError>());
 
 void main() {
   initializeReflectable();
 
   test('invoke function, getter', () {
-    var libraryMirror =
-        reflector.findLibrary('test_reflectable.test.libraries_test');
+    var libraryMirror = reflector.findLibrary('test_reflectable.test.libraries_test');
     expect(libraryMirror.simpleName, 'test_reflectable.test.libraries_test');
     expect(libraryMirror.invoke('myFunction', []), 'hello');
-    expect(
-        Function.apply(
-            libraryMirror.invokeGetter('myFunction') as Function, []),
-        'hello');
-    expect(
-        () => libraryMirror.invokeGetter('getter'), throwsReflectableNoMethod);
-    var myFunctionMirror =
-        libraryMirror.declarations['myFunction'] as MethodMirror;
+    expect(Function.apply(libraryMirror.invokeGetter('myFunction') as Function, []), 'hello');
+    expect(() => libraryMirror.invokeGetter('getter'), throwsReflectableNoMethod);
+    var myFunctionMirror = libraryMirror.declarations['myFunction'] as MethodMirror;
     expect(myFunctionMirror.owner, libraryMirror);
   });
   test('owner, setter, TopLevelMetaInvokeCapability', () {
@@ -110,10 +98,6 @@ void main() {
   });
   test('No libraryCapability', () {
     expect(() => reflector3.reflectType(D).owner, throwsNoCapability);
-    expect(
-        () => reflector3
-            .findLibrary('test_reflectable.test.libraries_test')
-            .owner,
-        throwsNoCapability);
+    expect(() => reflector3.findLibrary('test_reflectable.test.libraries_test').owner, throwsNoCapability);
   });
 }

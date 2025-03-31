@@ -32,13 +32,11 @@ class InvokingFrReflector extends r.Reflectable {
 }
 
 class InstanceInvokeFrReflector extends r.Reflectable {
-  const InstanceInvokeFrReflector()
-      : super(const c.InstanceInvokeCapability(methodRegExp));
+  const InstanceInvokeFrReflector() : super(const c.InstanceInvokeCapability(methodRegExp));
 }
 
 class StaticInvokeFrReflector extends r.Reflectable {
-  const StaticInvokeFrReflector()
-      : super(const c.StaticInvokeCapability(methodRegExp));
+  const StaticInvokeFrReflector() : super(const c.StaticInvokeCapability(methodRegExp));
 }
 
 const invokingReflector = InvokingReflector();
@@ -133,11 +131,9 @@ class BImplementer implements A {
 
 Matcher throwsNoCapability = throwsA(TypeMatcher<c.NoSuchCapabilityError>());
 
-Matcher throwsReflectableNoMethod =
-    throwsA(TypeMatcher<c.ReflectableNoSuchMethodError>());
+Matcher throwsReflectableNoMethod = throwsA(TypeMatcher<c.ReflectableNoSuchMethodError>());
 
-void testInstance(r.Reflectable mirrorSystem, A reflectee,
-    {bool broad = false}) {
+void testInstance(r.Reflectable mirrorSystem, A reflectee, {bool broad = false}) {
   test('Instance invocation: ${description[mirrorSystem.runtimeType]}', () {
     reflectee.reset();
     var instanceMirror = mirrorSystem.reflect(reflectee);
@@ -169,13 +165,11 @@ void testInstance(r.Reflectable mirrorSystem, A reflectee,
     }
     expect(instanceMirror.invokeSetter('setFoobar=', 100), 100);
     expect(reflectee.field, 100);
-    expect(() => instanceMirror.invoke('nonExisting', []),
-        throwsReflectableNoMethod);
+    expect(() => instanceMirror.invoke('nonExisting', []), throwsReflectableNoMethod);
   });
 }
 
-void testStatic(r.Reflectable mirrorSystem, Type reflectee,
-    void Function() classResetter, int Function() classGetter,
+void testStatic(r.Reflectable mirrorSystem, Type reflectee, void Function() classResetter, int Function() classGetter,
     {bool broad = false}) {
   test('Static invocation: ${description[mirrorSystem.runtimeType]}', () {
     classResetter();
@@ -208,8 +202,7 @@ void testStatic(r.Reflectable mirrorSystem, Type reflectee,
     }
     expect(classMirror.invokeSetter('setFoobar=', 100), 100);
     expect(classGetter(), 100);
-    expect(
-        () => classMirror.invoke('nonExisting', []), throwsReflectableNoMethod);
+    expect(() => classMirror.invoke('nonExisting', []), throwsReflectableNoMethod);
   });
 }
 

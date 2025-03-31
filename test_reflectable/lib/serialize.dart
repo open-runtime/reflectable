@@ -10,9 +10,7 @@ import 'package:reflectable/reflectable.dart';
 // ignore_for_file: omit_local_variable_types
 
 class Serializable extends Reflectable {
-  const Serializable()
-      : super(instanceInvokeCapability, const NewInstanceCapability(r'^$'),
-            declarationsCapability);
+  const Serializable() : super(instanceInvokeCapability, const NewInstanceCapability(r'^$'), declarationsCapability);
 }
 
 /// Serializes instances of classes marked with a `Serializable`

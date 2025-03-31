@@ -23,8 +23,7 @@ class ThinDeclarationMirror {
   final bool isProperty;
   final bool isFinal;
   final bool isMethod;
-  ThinDeclarationMirror(
-      this.name, this.isField, this.isProperty, this.isFinal, this.isMethod);
+  ThinDeclarationMirror(this.name, this.isField, this.isProperty, this.isFinal, this.isMethod);
 }
 
 bool _hasSetter(ClassMirror cls, MethodMirror getter) {
@@ -37,8 +36,7 @@ String _setterName(String getter) => '$getter=';
 ThinDeclarationMirror makeThin(DeclarationMirror declaration) {
   bool isField() => declaration is VariableMirror;
 
-  bool isProperty() =>
-      declaration is MethodMirror && !declaration.isRegularMethod;
+  bool isProperty() => declaration is MethodMirror && !declaration.isRegularMethod;
 
   bool isFinal() =>
       (declaration is VariableMirror && declaration.isFinal) ||
@@ -48,13 +46,12 @@ ThinDeclarationMirror makeThin(DeclarationMirror declaration) {
 
   bool isMethod() => !isField() && !isProperty();
 
-  return ThinDeclarationMirror(declaration.simpleName,
-      declaration is VariableMirror, isProperty(), isFinal(), isMethod());
+  return ThinDeclarationMirror(
+      declaration.simpleName, declaration is VariableMirror, isProperty(), isFinal(), isMethod());
 }
 
 class MyReflectable extends Reflectable {
-  const MyReflectable()
-      : super(instanceInvokeCapability, declarationsCapability);
+  const MyReflectable() : super(instanceInvokeCapability, declarationsCapability);
 }
 
 const myReflectable = MyReflectable();

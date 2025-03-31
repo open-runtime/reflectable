@@ -15,9 +15,7 @@ import 'class_property_test.reflectable.dart';
 // ignore_for_file: omit_local_variable_types
 
 class Reflector extends Reflectable {
-  const Reflector()
-      : super(
-            libraryCapability, declarationsCapability, typeRelationsCapability);
+  const Reflector() : super(libraryCapability, declarationsCapability, typeRelationsCapability);
 }
 
 const Reflector reflector = Reflector();
@@ -39,8 +37,7 @@ class D<X> {}
 void main() {
   initializeReflectable();
 
-  LibraryMirror libraryMirror =
-      reflector.findLibrary('test_reflectable.test.class_property_test');
+  LibraryMirror libraryMirror = reflector.findLibrary('test_reflectable.test.class_property_test');
   var aMirror = libraryMirror.declarations['A'] as ClassMirror;
   var bMirror = libraryMirror.declarations['_B'] as ClassMirror;
   var cMirror = libraryMirror.declarations['C'] as ClassMirror;

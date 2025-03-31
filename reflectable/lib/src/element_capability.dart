@@ -49,15 +49,13 @@ class InstanceInvokeMetaCapability extends MetadataQuantifiedCapability {
   const InstanceInvokeMetaCapability(super.metadataType);
 }
 
-class StaticInvokeCapability extends NamePatternCapability
-    implements TypeCapability {
+class StaticInvokeCapability extends NamePatternCapability implements TypeCapability {
   const StaticInvokeCapability(super.namePattern);
 }
 
 const staticInvokeCapability = StaticInvokeCapability('');
 
-class StaticInvokeMetaCapability extends MetadataQuantifiedCapability
-    implements TypeCapability {
+class StaticInvokeMetaCapability extends MetadataQuantifiedCapability implements TypeCapability {
   const StaticInvokeMetaCapability(super.metadataType);
 }
 
@@ -69,15 +67,13 @@ class TopLevelInvokeMetaCapability extends MetadataQuantifiedCapability {
   const TopLevelInvokeMetaCapability(super.metadataType);
 }
 
-class NewInstanceCapability extends NamePatternCapability
-    implements TypeCapability {
+class NewInstanceCapability extends NamePatternCapability implements TypeCapability {
   const NewInstanceCapability(super.namePattern);
 }
 
 const newInstanceCapability = NewInstanceCapability('');
 
-class NewInstanceMetaCapability extends MetadataQuantifiedCapability
-    implements TypeCapability {
+class NewInstanceMetaCapability extends MetadataQuantifiedCapability implements TypeCapability {
   const NewInstanceMetaCapability(super.metadataType);
 }
 
@@ -154,20 +150,14 @@ class LibraryDependenciesCapability implements LibraryCapability {
 const libraryDependenciesCapability = LibraryDependenciesCapability();
 
 class InvokingCapability extends NamePatternCapability
-    implements
-        InstanceInvokeCapability,
-        StaticInvokeCapability,
-        NewInstanceCapability {
+    implements InstanceInvokeCapability, StaticInvokeCapability, NewInstanceCapability {
   const InvokingCapability(super.namePattern);
 }
 
 const invokingCapability = InvokingCapability('');
 
 class InvokingMetaCapability extends MetadataQuantifiedCapability
-    implements
-        InstanceInvokeMetaCapability,
-        StaticInvokeMetaCapability,
-        NewInstanceMetaCapability {
+    implements InstanceInvokeMetaCapability, StaticInvokeMetaCapability, NewInstanceMetaCapability {
   const InvokingMetaCapability(super.metadataType);
 }
 
@@ -197,8 +187,7 @@ const subtypeQuantifyCapability = _SubtypeQuantifyCapability();
 class SuperclassQuantifyCapability implements ReflecteeQuantifyCapability {
   final Element? upperBound;
   final bool excludeUpperBound;
-  const SuperclassQuantifyCapability(this.upperBound,
-      {this.excludeUpperBound = false});
+  const SuperclassQuantifyCapability(this.upperBound, {this.excludeUpperBound = false});
 }
 
 // Note that `null` represents the [ClassElement] for `Object`.
@@ -211,11 +200,9 @@ class TypeAnnotationQuantifyCapability implements ReflecteeQuantifyCapability {
 
 const typeAnnotationQuantifyCapability = TypeAnnotationQuantifyCapability();
 
-const typeAnnotationDeepQuantifyCapability =
-    TypeAnnotationQuantifyCapability(transitive: true);
+const typeAnnotationDeepQuantifyCapability = TypeAnnotationQuantifyCapability(transitive: true);
 
-const correspondingSetterQuantifyCapability =
-    _CorrespondingSetterQuantifyCapability();
+const correspondingSetterQuantifyCapability = _CorrespondingSetterQuantifyCapability();
 
 const admitSubtypeCapability = _AdmitSubtypeCapability();
 
@@ -226,14 +213,12 @@ class ImportAttachedCapability {
 
 class GlobalQuantifyCapability extends ImportAttachedCapability {
   final String classNamePattern;
-  const GlobalQuantifyCapability(this.classNamePattern, Element reflector)
-      : super(reflector);
+  const GlobalQuantifyCapability(this.classNamePattern, Element reflector) : super(reflector);
 }
 
 class GlobalQuantifyMetaCapability extends ImportAttachedCapability {
   final Element metadataType;
-  const GlobalQuantifyMetaCapability(this.metadataType, Element reflector)
-      : super(reflector);
+  const GlobalQuantifyMetaCapability(this.metadataType, Element reflector) : super(reflector);
 }
 
 class _ReflectedTypeCapability implements DeclarationsCapability {
@@ -248,8 +233,7 @@ class _SubtypeQuantifyCapability implements ReflecteeQuantifyCapability {
   const _SubtypeQuantifyCapability();
 }
 
-class _CorrespondingSetterQuantifyCapability
-    implements ReflecteeQuantifyCapability {
+class _CorrespondingSetterQuantifyCapability implements ReflecteeQuantifyCapability {
   const _CorrespondingSetterQuantifyCapability();
 }
 

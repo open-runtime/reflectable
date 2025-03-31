@@ -17,9 +17,7 @@ import 'generic_mixin_test.reflectable.dart';
 // ignore_for_file: omit_local_variable_types
 
 class Reflector extends Reflectable {
-  const Reflector()
-      : super(typeRelationsCapability, instanceInvokeCapability,
-            reflectedTypeCapability);
+  const Reflector() : super(typeRelationsCapability, instanceInvokeCapability, reflectedTypeCapability);
 }
 
 const reflector = Reflector();

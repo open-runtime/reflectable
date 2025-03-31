@@ -14,9 +14,7 @@ import 'literal_type_arguments_test.reflectable.dart';
 // ignore_for_file: omit_local_variable_types
 
 class Reflector extends Reflectable {
-  const Reflector()
-      : super(metadataCapability, instanceInvokeCapability,
-            declarationsCapability);
+  const Reflector() : super(metadataCapability, instanceInvokeCapability, declarationsCapability);
 }
 
 const reflector = Reflector();

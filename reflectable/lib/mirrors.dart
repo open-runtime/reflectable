@@ -540,8 +540,7 @@ abstract class ClosureMirror implements InstanceMirror {
   /// Required capabilities: [apply] requires a matching
   /// [InstanceInvokeCapability] or [InstanceInvokeMetaCapability], targeting
   /// the relevant `call` method.
-  Object? apply(List positionalArguments,
-      [Map<Symbol, dynamic>? namedArguments]); // RET: InstanceMirror
+  Object? apply(List positionalArguments, [Map<Symbol, dynamic>? namedArguments]); // RET: InstanceMirror
 }
 
 /// A [LibraryMirror] reflects a Dart language library, providing

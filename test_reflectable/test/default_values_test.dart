@@ -27,8 +27,7 @@ class B {
 @myReflectable
 class A {
   static const localConstant = 10;
-  static const localConstantImportedValue =
-      2 * (localConstant + prefix.globalConstant.length);
+  static const localConstantImportedValue = 2 * (localConstant + prefix.globalConstant.length);
   A.optional(
       [int x = prefix.A.localConstant + 31,
       bool y = identical(globalConstant, globalConstant),

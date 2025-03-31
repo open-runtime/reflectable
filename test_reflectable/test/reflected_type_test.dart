@@ -15,9 +15,7 @@ import 'reflected_type_test.reflectable.dart';
 // ignore_for_file: omit_local_variable_types
 
 class Reflector extends Reflectable {
-  const Reflector()
-      : super(reflectedTypeCapability, invokingCapability,
-            declarationsCapability);
+  const Reflector() : super(reflectedTypeCapability, invokingCapability, declarationsCapability);
 }
 
 const reflector = Reflector();
@@ -38,8 +36,7 @@ class A {
 
   static int noArguments() => 0;
   static int? oneArgument(String x) => null;
-  static int optionalArguments(A x, double y, [Reflector? z, dynamic w = 42]) =>
-      0;
+  static int optionalArguments(A x, double y, [Reflector? z, dynamic w = 42]) => 0;
 
   // ignore: prefer_adjacent_string_concatenation
   static int? namedArguments(String x, List y, {String z = '4' + '2'}) => null;
@@ -67,8 +64,7 @@ void main() {
   var getsetEqualsMirror = declarations['getset='] as MethodMirror;
   var noArgumentsMirror = declarations['noArguments'] as MethodMirror;
   var oneArgumentMirror = declarations['oneArgument'] as MethodMirror;
-  var optionalArgumentsMirror =
-      declarations['optionalArguments'] as MethodMirror;
+  var optionalArgumentsMirror = declarations['optionalArguments'] as MethodMirror;
   var namedArgumentsMirror = declarations['namedArguments'] as MethodMirror;
   var staticGetsetMirror = declarations['staticGetset'] as MethodMirror;
   var staticGetsetEqualsMirror = declarations['staticGetset='] as MethodMirror;
@@ -141,8 +137,7 @@ void main() {
     expect(staticGetsetMirror.parameters.length, 0);
     expect(staticGetsetEqualsMirror.parameters.length, 1);
     var staticGetsetEqualsParameter0 = staticGetsetEqualsMirror.parameters[0];
-    expect(staticGetsetEqualsParameter0.reflectedType,
-        const TypeValue<List<String>>().type);
+    expect(staticGetsetEqualsParameter0.reflectedType, const TypeValue<List<String>>().type);
   });
 
   test('reflected return types, methods', () {
@@ -159,13 +154,11 @@ void main() {
     expect(opBracketMirror.hasReflectedReturnType, true);
     expect(opBracketMirror.reflectedReturnType, int);
     expect(opBracketEqualsMirror.hasReflectedReturnType, true);
-    expect(opBracketEqualsMirror.reflectedReturnType,
-        const TypeValue<void>().type);
+    expect(opBracketEqualsMirror.reflectedReturnType, const TypeValue<void>().type);
     expect(getsetMirror.hasReflectedReturnType, true);
     expect(getsetMirror.reflectedReturnType, String);
     expect(getsetEqualsMirror.hasReflectedReturnType, true);
-    expect(
-        getsetEqualsMirror.reflectedReturnType, const TypeValue<void>().type);
+    expect(getsetEqualsMirror.reflectedReturnType, const TypeValue<void>().type);
     expect(noArgumentsMirror.hasReflectedReturnType, true);
     expect(noArgumentsMirror.reflectedReturnType, int);
     expect(oneArgumentMirror.hasReflectedReturnType, true);
@@ -175,10 +168,8 @@ void main() {
     expect(namedArgumentsMirror.hasReflectedReturnType, true);
     expect(namedArgumentsMirror.reflectedReturnType, int);
     expect(staticGetsetMirror.hasReflectedReturnType, true);
-    expect(staticGetsetMirror.reflectedReturnType,
-        const TypeValue<List<String>>().type);
+    expect(staticGetsetMirror.reflectedReturnType, const TypeValue<List<String>>().type);
     expect(staticGetsetEqualsMirror.hasReflectedReturnType, true);
-    expect(staticGetsetEqualsMirror.reflectedReturnType,
-        const TypeValue<void>().type);
+    expect(staticGetsetEqualsMirror.reflectedReturnType, const TypeValue<void>().type);
   });
 }

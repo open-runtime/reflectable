@@ -24,8 +24,7 @@ class UnreachableError extends Error {
 /// expression throws (even though it actually happens here). This way we avoid
 /// warnings about a missing return problem, and the code may be more readable.
 Never unreachableError(String message) {
-  var extendedMessage =
-      '*** Unexpected situation encountered!\nPlease report a bug on '
+  var extendedMessage = '*** Unexpected situation encountered!\nPlease report a bug on '
       'github.com/dart-lang/reflectable: $message.';
   throw UnreachableError(extendedMessage);
 }

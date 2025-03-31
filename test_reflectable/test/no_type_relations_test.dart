@@ -10,8 +10,7 @@ import 'package:test/test.dart';
 import 'no_type_relations_test.reflectable.dart';
 
 class Reflector extends Reflectable {
-  const Reflector()
-      : super(declarationsCapability, superclassQuantifyCapability);
+  const Reflector() : super(declarationsCapability, superclassQuantifyCapability);
 }
 
 const reflector = Reflector();
@@ -22,8 +21,7 @@ class Foo {}
 @reflector
 class Bar extends Foo {}
 
-final Matcher throwsNoCapability =
-    throwsA(const TypeMatcher<NoSuchCapabilityError>());
+final Matcher throwsNoCapability = throwsA(const TypeMatcher<NoSuchCapabilityError>());
 
 void expectCapabilityMessage(Function() f) {
   expect(() => f(), throwsNoCapability);

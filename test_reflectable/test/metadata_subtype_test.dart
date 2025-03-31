@@ -15,8 +15,7 @@ import 'metadata_subtype_test.reflectable.dart';
 
 class MyReflectable extends Reflectable {
   const MyReflectable()
-      : super(const InstanceInvokeMetaCapability(D),
-            const StaticInvokeMetaCapability(D), declarationsCapability);
+      : super(const InstanceInvokeMetaCapability(D), const StaticInvokeMetaCapability(D), declarationsCapability);
 }
 
 const myReflectable = MyReflectable();
@@ -58,8 +57,7 @@ class C {
   static int staticBaz() => int.parse(' 2' '4 '.substring(1, 2));
 }
 
-final Matcher throwsReflectableNoMethod =
-    throwsA(const TypeMatcher<ReflectableNoSuchMethodError>());
+final Matcher throwsReflectableNoMethod = throwsA(const TypeMatcher<ReflectableNoSuchMethodError>());
 
 void main() {
   initializeReflectable();
@@ -81,7 +79,6 @@ void main() {
     expect(() => instanceMirror.invoke('baz', []), throwsReflectableNoMethod);
     expect(classMirror.invoke('staticFoo', []), 24);
     expect(classMirror.invoke('staticBar', []), 24);
-    expect(
-        () => classMirror.invoke('staticBaz', []), throwsReflectableNoMethod);
+    expect(() => classMirror.invoke('staticBaz', []), throwsReflectableNoMethod);
   });
 }

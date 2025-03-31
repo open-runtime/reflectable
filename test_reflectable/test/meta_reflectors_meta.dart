@@ -11,8 +11,7 @@
 /// depending on reflectable.
 library test_reflectable.test.meta_reflectors_meta;
 
-@GlobalQuantifyCapability(
-    r'^reflectable.reflectable.Reflectable$', AllReflectorsMetaReflector())
+@GlobalQuantifyCapability(r'^reflectable.reflectable.Reflectable$', AllReflectorsMetaReflector())
 import 'package:reflectable/reflectable.dart';
 
 // ignore_for_file: omit_local_variable_types
@@ -25,15 +24,13 @@ import 'package:reflectable/reflectable.dart';
 /// scope specified by the argument.
 class ScopeMetaReflector extends Reflectable {
   const ScopeMetaReflector()
-      : super(const TopLevelInvokeMetaCapability(ScopeMetaReflector),
-            declarationsCapability, libraryCapability);
+      : super(const TopLevelInvokeMetaCapability(ScopeMetaReflector), declarationsCapability, libraryCapability);
   Set<Reflectable> reflectablesOfScope(String scope) {
     var result = <Reflectable>{};
     for (LibraryMirror library in libraries.values) {
       for (DeclarationMirror declaration in library.declarations.values) {
         if (declaration is MethodMirror) {
-          result.addAll(library.invoke(declaration.simpleName, [scope])
-              as Iterable<Reflectable>);
+          result.addAll(library.invoke(declaration.simpleName, [scope]) as Iterable<Reflectable>);
         }
       }
     }
@@ -43,15 +40,13 @@ class ScopeMetaReflector extends Reflectable {
 
 /// Used to get access to all reflectors.
 class AllReflectorsMetaReflector extends Reflectable {
-  const AllReflectorsMetaReflector()
-      : super(subtypeQuantifyCapability, newInstanceCapability);
+  const AllReflectorsMetaReflector() : super(subtypeQuantifyCapability, newInstanceCapability);
 
   Set<Reflectable> get reflectors {
     var result = <Reflectable>{};
     for (var classMirror in annotatedClasses) {
       if (classMirror.isAbstract) continue;
-      var reflector =
-          Reflectable.getInstance(classMirror.reflectedType) as Reflectable;
+      var reflector = Reflectable.getInstance(classMirror.reflectedType) as Reflectable;
       result.add(reflector);
     }
     return result;

@@ -9,9 +9,7 @@ import 'package:test/test.dart';
 import 'superinterfaces_test.reflectable.dart';
 
 class Reflector extends Reflectable {
-  const Reflector()
-      : super(invokingCapability, declarationsCapability,
-            typeRelationsCapability, libraryCapability);
+  const Reflector() : super(invokingCapability, declarationsCapability, typeRelationsCapability, libraryCapability);
 }
 
 @Reflector()

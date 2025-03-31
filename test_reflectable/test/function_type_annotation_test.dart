@@ -16,8 +16,8 @@ import 'function_type_annotation_test.reflectable.dart';
 
 class Reflector extends Reflectable {
   const Reflector()
-      : super(instanceInvokeCapability, topLevelInvokeCapability,
-            declarationsCapability, reflectedTypeCapability, libraryCapability);
+      : super(instanceInvokeCapability, topLevelInvokeCapability, declarationsCapability, reflectedTypeCapability,
+            libraryCapability);
 }
 
 const reflector = Reflector();
@@ -67,8 +67,7 @@ typedef TypeF17 = X Function<X>(X, {X a, X b});
 void main() {
   initializeReflectable();
 
-  LibraryMirror libraryMirror = reflector
-      .findLibrary('test_reflectable.test.function_type_annotation_test');
+  LibraryMirror libraryMirror = reflector.findLibrary('test_reflectable.test.function_type_annotation_test');
   var variableMirror = libraryMirror.declarations['int2int'] as VariableMirror;
   var classMirror = reflector.reflectType(C) as ClassMirror;
   var getterMirror = classMirror.declarations['getter'] as MethodMirror;
@@ -103,8 +102,7 @@ void main() {
     expect(methodArgument1Mirror.dynamicReflectedType, int2intType);
   });
 
-  var inlineTypesMirror =
-      classMirror.declarations['inlineTypes'] as MethodMirror;
+  var inlineTypesMirror = classMirror.declarations['inlineTypes'] as MethodMirror;
   List<ParameterMirror> parameterMirrors = inlineTypesMirror.parameters;
   List<Type> expectedTypes = [
     TypeValue<int Function()>().type,

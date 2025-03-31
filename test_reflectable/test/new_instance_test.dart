@@ -37,8 +37,7 @@ class A {
   A.positional(int x) : f = x - 42;
 
   @C()
-  A.optional(int x, int y, [int z = 1, w])
-      : f = x + y + z * 42 + ((w ?? 10) as int);
+  A.optional(int x, int y, [int z = 1, w]) : f = x + y + z * 42 + ((w ?? 10) as int);
 
   @C()
   A.argNamed(int x, int y, {int z = 42, int? p}) : f = x + y - z - (p ?? 10);
@@ -75,8 +74,7 @@ void performTests(String message, Reflectable reflector) {
     expect((classMirror.newInstance('optional', [1, 2, 3]) as A).f, 139);
   });
   test('$message: newInstance named arguments, all used', () {
-    expect((classMirror.newInstance('argNamed', [1, 2], {#z: 3, #p: 0}) as A).f,
-        0);
+    expect((classMirror.newInstance('argNamed', [1, 2], {#z: 3, #p: 0}) as A).f, 0);
   });
   test('$message: newInstance named arguments, some used', () {
     expect((classMirror.newInstance('argNamed', [1, 2], {#z: 3}) as A).f, -10);
@@ -91,8 +89,7 @@ void performTests(String message, Reflectable reflector) {
   });
 }
 
-final throwsReflectableNoMethod =
-    throwsA(const TypeMatcher<ReflectableNoSuchMethodError>());
+final throwsReflectableNoMethod = throwsA(const TypeMatcher<ReflectableNoSuchMethodError>());
 
 void main() {
   performTests('reflector', reflector);
@@ -104,7 +101,6 @@ void main() {
   });
   test('newInstance named constructor, no metadata, rejected', () {
     var classMirror = metaReflector.reflectType(A) as ClassMirror;
-    expect(() => classMirror.newInstance('noMeta', [0]),
-        throwsReflectableNoMethod);
+    expect(() => classMirror.newInstance('noMeta', [0]), throwsReflectableNoMethod);
   });
 }

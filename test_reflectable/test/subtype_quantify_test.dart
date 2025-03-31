@@ -9,9 +9,7 @@ import 'package:test/test.dart';
 import 'subtype_quantify_test.reflectable.dart';
 
 class Reflector extends Reflectable {
-  const Reflector()
-      : super(subtypeQuantifyCapability, instanceInvokeCapability,
-            typeRelationsCapability);
+  const Reflector() : super(subtypeQuantifyCapability, instanceInvokeCapability, typeRelationsCapability);
 }
 
 const reflector = Reflector();
@@ -44,8 +42,7 @@ class E extends C with M {
 
 class F {}
 
-Matcher throwsNoSuchCapabilityError =
-    throwsA(const TypeMatcher<NoSuchCapabilityError>());
+Matcher throwsNoSuchCapabilityError = throwsA(const TypeMatcher<NoSuchCapabilityError>());
 Matcher isClassMirror = const TypeMatcher<ClassMirror>();
 
 void main() {

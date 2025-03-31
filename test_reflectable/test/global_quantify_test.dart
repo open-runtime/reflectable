@@ -4,16 +4,14 @@
 
 library test_reflectable.test.global_quantify_test;
 
-@GlobalQuantifyCapability(
-    r'^test_reflectable.test.global_quantify_test.(A|B)$', reflector)
+@GlobalQuantifyCapability(r'^test_reflectable.test.global_quantify_test.(A|B)$', reflector)
 @GlobalQuantifyMetaCapability(Mark, reflector)
 import 'package:reflectable/reflectable.dart';
 import 'package:test/test.dart';
 import 'global_quantify_test.reflectable.dart';
 
 class Reflector extends Reflectable {
-  const Reflector()
-      : super(typeCapability, const InstanceInvokeCapability('foo'));
+  const Reflector() : super(typeCapability, const InstanceInvokeCapability('foo'));
 }
 
 const reflector = Reflector();
@@ -39,8 +37,7 @@ class D {
   int foo() => 45;
 }
 
-Matcher throwsNoSuchCapabilityError =
-    throwsA(const TypeMatcher<NoSuchCapabilityError>());
+Matcher throwsNoSuchCapabilityError = throwsA(const TypeMatcher<NoSuchCapabilityError>());
 
 void main() {
   initializeReflectable();

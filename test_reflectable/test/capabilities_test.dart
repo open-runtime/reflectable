@@ -118,8 +118,7 @@ class BImplementer implements B {
 }
 
 Matcher throwsNoCapability = throwsA(TypeMatcher<c.NoSuchCapabilityError>());
-Matcher throwsReflectableNoMethod =
-    throwsA(TypeMatcher<c.ReflectableNoSuchMethodError>());
+Matcher throwsReflectableNoMethod = throwsA(TypeMatcher<c.ReflectableNoSuchMethodError>());
 
 void testDynamic(B o, String description) {
   test('Dynamic invocation $description', () {
@@ -130,13 +129,11 @@ void testDynamic(B o, String description) {
     expect(instanceMirror.invoke('boo', []), 47);
     expect(() => instanceMirror.invoke('bar', []), throwsReflectableNoMethod);
     expect(instanceMirror.invokeGetter('getFoo'), 44);
-    expect(
-        () => instanceMirror.invokeGetter('getBar'), throwsReflectableNoMethod);
+    expect(() => instanceMirror.invokeGetter('getBar'), throwsReflectableNoMethod);
     expect(o.field, 46);
     expect(instanceMirror.invokeSetter('setFoo=', 100), 100);
     expect(o.field, 100);
-    expect(() => instanceMirror.invokeSetter('setBar=', 100),
-        throwsReflectableNoMethod);
+    expect(() => instanceMirror.invokeSetter('setBar=', 100), throwsReflectableNoMethod);
     expect(instanceMirror.invoke('includedByInvokeInBBase', []), 49);
   });
 }
@@ -153,16 +150,14 @@ void main() {
     expect(A.field, 46);
     expect(classMirror.invokeSetter('setFoo=', 100), 100);
     expect(A.field, 100);
-    expect(() => classMirror.invokeSetter('setBar=', 100),
-        throwsReflectableNoMethod);
+    expect(() => classMirror.invokeSetter('setBar=', 100), throwsReflectableNoMethod);
     expect(classMirror.declarations.keys, {'foo', 'setFoo=', 'getFoo', 'boo'});
     expect(classMirror.invoke('boo', []), 47);
   });
   testDynamic(B(), 'Annotated');
 
   test('Declarations', () {
-    expect(instanceReflector.reflect(B()).type.declarations.keys,
-        {'foo', 'setFoo=', 'getFoo', 'boo'});
+    expect(instanceReflector.reflect(B()).type.declarations.keys, {'foo', 'setFoo=', 'getFoo', 'boo'});
   });
 
   test("Can't reflect subclass of annotated", () {

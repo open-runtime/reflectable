@@ -18,8 +18,7 @@ abstract class FixedPoint<T> {
     bool isNew(T element) => !initialSet.contains(element);
     while (workingSet.isNotEmpty) {
       var newSet = <T>{};
-      Future<void> addSuccessors(T element) async =>
-          (await successors(element)).where(isNew).forEach(newSet.add);
+      Future<void> addSuccessors(T element) async => (await successors(element)).where(isNew).forEach(newSet.add);
       for (var t in workingSet) {
         await addSuccessors(t);
       }
@@ -33,8 +32,7 @@ abstract class FixedPoint<T> {
   /// [successors] to it. Then it returns the expanded `initialSet`.
   Future<Set<T>> singleExpand(final Set<T> initialSet) async {
     var newSet = <T>{};
-    Future<void> addSuccessors(T t) async =>
-        (await successors(t)).forEach(newSet.add);
+    Future<void> addSuccessors(T t) async => (await successors(t)).forEach(newSet.add);
     for (T t in initialSet) {
       await addSuccessors(t);
     }
